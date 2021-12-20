@@ -46,23 +46,36 @@ computerSelection = getRandomPlay(), score_01 = 0, score_02 = 0) {
         return [playerScore, computerScore];
     }
 } //return output expected: [1,0]; [1,1]; [0,0]
-//hold player score
+//create 5 rounds match:
 const playGameMatch = (rounds = 5) => {
     let playerOneScore = 0;
     let computerPlayScore = 0;
     let matchResult;
+    let i;
     //get match result and score
-    for (let i = 0; i < rounds; i++) {
-        matchResult = getGameMatch();
+    for (i = 1; i < rounds; i++) {
+        matchResult = getGameMatch('paper', 'scissor');
         playerOneScore = playerOneScore + matchResult[0];
         computerPlayScore = computerPlayScore + matchResult[1];
         console.log(`match score is: ${playerOneScore} vs ${computerPlayScore}`);
+        if (i == 3) {
+            break;
+        }
     }
-    console.log(`final match score is: ${playerOneScore} vs ${computerPlayScore}`);
+    while (i == 3) {
+        if (playerOneScore == 3) {
+            console.log(`FINAL SCORE:${playerOneScore} vs ${computerPlayScore}`);
+            return `VICTORY!`
+        } else if (computerPlayScore == 3) {
+            console.log(`FINAL SCORE:${playerOneScore} vs ${computerPlayScore}`);
+            return `LOSE!`
+        } else {
+            break;
+        }
+    }
+    console.log(`WAIT!final match score is: ${playerOneScore} vs ${computerPlayScore}`);
     return;
 }
-
 playGameMatch();
-//2 vs 2
 // console.log(`This is the playerOne choice: ${playerOne}`); // just for checking
 // console.log(`This is the computer choice: ${computerPlay}`); // just for checking
