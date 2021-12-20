@@ -51,31 +51,43 @@ const playGameMatch = (rounds = 5) => {
     let playerOneScore = 0;
     let computerPlayScore = 0;
     let matchResult;
-    let i;
     //get match result and score
-    for (i = 1; i < rounds; i++) {
-        matchResult = getGameMatch('paper', 'scissor');
+    for (let i = 0; i < rounds; i++) {
+        if (i == 3) {
+            if (playerOneScore == 3) {
+                console.log(`FINAL SCORE:${playerOneScore} vs ${computerPlayScore}`);
+                return `VICTORY!`;
+            } else if (computerPlayScore == 3) {
+                console.log(`FINAL SCORE:${playerOneScore} vs ${computerPlayScore}`);
+                return `LOSE!`;
+            } 
+        } 
+        if (i == 4) {
+            if (playerOneScore >= 3) {
+                console.log(`FINAL SCORE:${playerOneScore} vs ${computerPlayScore}`);
+                return `VICTORY!`;
+            } else if (computerPlayScore >= 3) {
+                console.log(`FINAL SCORE:${playerOneScore} vs ${computerPlayScore}`);
+                return `LOSE!`;
+            } else if (playerOneScore == 2 && computerPlayScore == 2) {
+                console.log(`FINAL SCORE:${playerOneScore} vs ${computerPlayScore}`);
+                return `DRAW!`;
+            } 
+        }
+        if (i == 5) {
+            if (playerOneScore >= 3) {
+                console.log(`FINAL SCORE:${playerOneScore} vs ${computerPlayScore}`);
+                return `VICTORY!`;
+            } else {
+                console.log(`FINAL SCORE:${playerOneScore} vs ${computerPlayScore}`);
+                return `LOSE!`;
+            }
+        }
+        matchResult = getGameMatch();
         playerOneScore = playerOneScore + matchResult[0];
         computerPlayScore = computerPlayScore + matchResult[1];
         console.log(`match score is: ${playerOneScore} vs ${computerPlayScore}`);
-        if (i == 3) {
-            break;
-        }
     }
-    while (i == 3) {
-        if (playerOneScore == 3) {
-            console.log(`FINAL SCORE:${playerOneScore} vs ${computerPlayScore}`);
-            return `VICTORY!`
-        } else if (computerPlayScore == 3) {
-            console.log(`FINAL SCORE:${playerOneScore} vs ${computerPlayScore}`);
-            return `LOSE!`
-        } else {
-            break;
-        }
-    }
-    console.log(`WAIT!final match score is: ${playerOneScore} vs ${computerPlayScore}`);
-    return;
 }
-playGameMatch();
-// console.log(`This is the playerOne choice: ${playerOne}`); // just for checking
-// console.log(`This is the computer choice: ${computerPlay}`); // just for checking
+const result = playGameMatch();
+console.log(result);
