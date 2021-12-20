@@ -89,5 +89,4 @@ const playGameMatch = (rounds = 5) => {
         console.log(`match score is: ${playerOneScore} vs ${computerPlayScore}`);
     }
 }
-const result = playGameMatch();
-console.log(result);
+console.log(playGameMatch());
