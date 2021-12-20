@@ -34,11 +34,13 @@ The console.log() will return the results for each round.
 
     //console.log(computerPlay);
 
- compare the choice between "playerOne" vs "computerPlay" in this order;
-if rock > scissors; scissors > paper; paper > rock ?
-    return show message: PlayerOne WIN!
-else if PlayerOne === computerPlay:
-    return show message: DRAW!
+compare the choice between "playerOne" vs "computerPlay" in this order;
+if playerOne == ComputerPlay
+    return `draw`;
+else if (
+    (playerSelection == 'rock' && computerSelection == 'scissors') || (playerSelection == 'scissor' && computerSelection == 'paper') || (playerSelection == 'paper' && computerSelection == 'rock')
+    ); 
+    return `${playerOne} beats ${computerPlay}`;
 else 
-    return show message: PlayerOne LOSE!
+    return `Lose, ${playerOne} loses to ${computerPlay}`;
 
