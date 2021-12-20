@@ -25,7 +25,17 @@ function getRandomPlay () {
 
 const computerPlay = getRandomPlay();
 
-//compare the choices:
+//create a game() with arguments of the computer and player:
+
+function gameMatch(playerOneSelection, computerSelection) {
+    //some code..
+
+    return //if win match
+    return //if draw
+    return //if lose;
+}
+
+
 
 
 
