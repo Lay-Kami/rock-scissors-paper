@@ -9,12 +9,14 @@ function getPlayerOneChoice () {
     (playChoice !== 'paper'));
     return playChoice;
 }
-//functions for computerPlay to work
+
+//computerPlay
 function getRandomInt (min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min) + min);
 }
+
 function getRandomPlay () {
     let playChoice = ['rock', 'scissor', 'paper'];
     const maxNumber = playChoice.length;
@@ -22,6 +24,7 @@ function getRandomPlay () {
     playChoice = playChoice.at(getRandomInt(0, maxNumber));
     return playChoice;
 }
+
 //create a game() with arguments of the computerPlay and playerPlay:
 function getGameMatch(playerSelection = getPlayerOneChoice(), 
 computerSelection = getRandomPlay(), score_01 = 0, score_02 = 0) {
@@ -46,6 +49,8 @@ computerSelection = getRandomPlay(), score_01 = 0, score_02 = 0) {
         return [playerScore, computerScore];
     }
 } //return output expected: [1,0]; [1,1]; [0,0]
+
+
 //create 5 rounds match:
 const playGameMatch = (rounds = 5) => {
     let playerOneScore = 0;
