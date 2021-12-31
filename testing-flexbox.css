@@ -147,3 +147,7 @@ button {
 button.start {
   background: #dd8808;
 }
+
+div {
+   outline: auto;
+}
