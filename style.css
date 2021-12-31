@@ -1,0 +1,97 @@
+html, body {
+  /* outline: gray auto; */
+  margin: 0 auto;
+  padding: 0;
+  width: auto;
+  height: 100%;
+  min-height: 100%;
+  overflow-y: auto;
+  background-color: black;
+  color: aliceblue;
+  display: flex;
+  justify-content: space-around;
+}
+
+img {
+}
+
+.container-head {
+  background-color: rgb(255, 194, 26);
+  max-width: 25vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.container-body {
+  background-color: rgb(219, 167, 23);
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: space-around;
+}
+
+h1 {
+  font-size: 1.4em;
+  margin: 0;
+}
+
+h2 {
+  font-size: 1em;
+}
+
+.instructions {
+  margin-bottom: 25rem;
+}
+
+.instructions,
+#footerId,
+h1 {
+  padding: 0 .5em;
+
+}
+
+.players {
+  background-color: rgba(178, 201, 178, 0.658);
+  display: flex;
+  justify-content: space-evenly;
+  height: auto;
+  margin: 0;
+}
+
+div.icon {
+  background-color: honeydew;
+  width: 10em;
+  height: 10em;
+}
+
+div.match {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+
+}
+
+div.controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1em;
+}
+
+
+div.choice-play {
+  display: flex;
+  justify-content: center;
+}
+
+button.play {
+  margin: 0 3em;
+}
+
+.start-play button {
+  margin: 3em auto;
+}
