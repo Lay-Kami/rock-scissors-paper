@@ -6,44 +6,43 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Scissor and Paper | THE ODIN PROJECT</title>
-    <link rel="stylesheet" href="./style.css">
+    <!-- <link rel="stylesheet" href="./style.css"> -->
+    <link rel="stylesheet" href="./testing-flexbox.css">
 </head>
 <body>
-    <div class="container-head">
-            <h1>Rock Scissor Paper Game</h1>
-            <div class="instructions">
-                <h2>How to play:</h2>
-                <p>add text</p>    
-            </div>
-            <div class="footer name">
-                <p id="footerId">maybe footer</p>
-            </div>
-    </div>
-    <div class="container-body">
-        <div class="players">
-            <div class="icon">
-                <img href="" alt="image-playChoice">     
-            </div>
-            <div class="icon">
-                <img href="" alt="image-playChoice">  
-            </div>
+  <div class="container">
+    <div class="row">
+      <div class="side-card"></div>
+      <div class="display-card">
+        <div class="card players">
+          <div class="pl-cd">
+            <div class="square icon"></div>
+            <div class="square vs-play"><p>VS</p></div>
+            <div class="square icon"></div>
+          </div>
         </div>
-        <div class="match">
-            <p>WIN! Rock beats Paper</p>
-            <p>01 vs 00</p>
+        <div class="card match">
+          <div class="pl-cd">
+            <div class="square score"></div>
+            <div class="square play-description"></div>
+            <div class="square score"></div>
+          </div>
+        </div>
+        <div class="card controls">
+          <div class="pl-cd">
+            <button class="play-btn">Rock</button>
+            <button class="play-btn">Scissor</button>
+            <button class="play-btn">Paper</button>
+          </div>
+          <div class="pl-cd">
+            <button class="play-btn start">Play</button>            
+          </div>
+        </div>
+      </div>
+      <div class="side-card"></div>
+    </div>
+  </div>
 
-        </div>
-        <div class="controls">
-            <div class="choice-play">
-                <button class="play">Rock</button>
-                <button class="play">Scissor</button>
-                <button class="play">Paper</button>
-            </div>
-            <div class="start-play">
-                <button class="play">Play</button>
-            </div>
-        </div>
-    </div>
-    <!-- <script src="./rock-scissor-paper.js"></script> -->
+  <!-- <script src="./rock-scissor-paper.js"></script> -->
 </body>
 </html>
