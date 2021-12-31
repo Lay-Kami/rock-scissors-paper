@@ -1,6 +1,6 @@
 html, body {
   /* outline: gray auto; */
-  margin: 0 auto;
+  margin: 0 5vw;
   padding: 0;
   width: auto;
   height: 100%;
@@ -12,11 +12,14 @@ html, body {
   justify-content: space-around;
 }
 
+* {
+  background-color: rgb(255, 194, 26);
+}
+
 img {
 }
 
 .container-head {
-  background-color: rgb(255, 194, 26);
   max-width: 25vw;
   display: flex;
   flex-direction: column;
@@ -25,12 +28,9 @@ img {
 }
 
 .container-body {
-  background-color: rgb(219, 167, 23);
   width: 100vw;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: space-around;
 }
 
 h1 {
@@ -53,45 +53,65 @@ h1 {
 
 }
 
-.players {
-  background-color: rgba(178, 201, 178, 0.658);
+.players,
+.match,
+.controls {
+  flex-grow: 1;
+  flex-shrink: 0;
   display: flex;
-  justify-content: space-evenly;
-  height: auto;
-  margin: 0;
+
 }
 
-div.icon {
-  background-color: honeydew;
+
+.players {
+  justify-content: space-evenly;
+  align-items: flex-end;
+}
+
+.match {
+  flex-grow: 0;
+  flex-direction: column;
+  align-items: center;
+}
+
+.controls {
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 2em;
+}
+
+div.players .icon {
+  border: 1px solid rgb(243, 243, 243);
   width: 10em;
   height: 10em;
-}
-
-div.match {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 0;
-
-}
-
-div.controls {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 1em;
-}
-
-
-div.choice-play {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
-button.play {
-  margin: 0 3em;
+img { 
+
 }
+
+div.controls .choice-play{
+  margin-bottom: 1em;
+}
+
+.play {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 1.5px solid white ;
+  background-color: rgb(255, 207, 50, 0.50);
+  box-shadow: white;
+  box-sizing: border-box;
+  margin: 0 2em;
+  box-shadow: 0 2px 18px #8f8f8f65;
+}
+
+
 
 .start-play button {
-  margin: 3em auto;
+  
 }
