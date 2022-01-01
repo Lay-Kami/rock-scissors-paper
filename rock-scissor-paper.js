@@ -1,11 +1,49 @@
 //functions declared
-//for effect
+//for button effect
 function handleClickEffect (e) {
   e.target.classList.add('btn-after');
-    
   setTimeout(() => {
     e.target.classList.remove('btn-after');
   }, 200);
+}
+
+//change user display by event
+function handleImageChangePlayer (e) {
+  const imagePlayer = document.querySelector('img.user-play');
+//Img based on choice made by click:
+  if(e.target.dataset.play == 'rock') {
+    imagePlayer.setAttribute('src', './images/rock.png');
+  } else if (e.target.dataset.play == 'scissor') {
+    imagePlayer.setAttribute('src', './images/scissor.png');
+  } else {
+    imagePlayer.setAttribute('src', './images/paper.png');
+  }
+}
+
+//change computer display by event
+function handleImageChangeComputer (e) {
+    const imageComputer = document.querySelector('img.computer-play');
+
+    if(computerChoice.choice == 'rock') {
+      imageComputer.setAttribute('src', './images/rock.png');
+    } else if (computerChoice.choice == 'scissor') {
+      imageComputer.setAttribute('src', './images/scissor.png');
+    } else if (computerChoice.choice == 'paper') {
+      imageComputer.setAttribute('src', './images/paper.png');
+    } else {
+      imageComputer.setAttribute('src', './images/default-img.png');
+    }
+  }
+
+//resume user choice
+function resumeChoice () {
+  const imagePlayer = document.querySelector('img.user-play');
+  const imageComputer = document.querySelector('img.computer-play');
+
+  imagePlayer.setAttribute('src', './images/default-img.png');
+  imageComputer.setAttribute('src', './images/default-img.png');
+  playerChoice.choice = null;
+  btnStart.setAttribute('disabled', 'true');
 }
 
 //get user choice by event
@@ -21,6 +59,7 @@ function getChoice (e) {
       playerChoice.choice = 'paper';
       break;
   }
+  btnStart.removeAttribute('disabled');
 }
 
 //computerPlay
@@ -39,25 +78,34 @@ function getRandomPlay () {
 }
 
 //start UI game
-//get controls
+//get controls buttons
 const btnPlay = document.querySelectorAll('button.play-btn');
 const btnStart = document.querySelector('button.start');
+const btnAll = document.querySelectorAll('button');
+const btnResumeChoice = document.querySelector('button.resume-choice');
 
 //add buttons effects
-btnPlay.forEach((button) => {
+btnAll.forEach((button) => {
   button.addEventListener('click', handleClickEffect);
 });
-btnStart.addEventListener('click', handleClickEffect);
+
+
+//resume choice
+btnResumeChoice.addEventListener('click', resumeChoice);
 
 //User choice
 const playerChoice = {choice: null};
 btnPlay.forEach(button => {
   button.addEventListener('click', getChoice);
 });
+btnPlay.forEach((button => {
+  button.addEventListener('click', handleImageChangePlayer);
+}))
 
 //computer play by start
 const computerChoice = {choice: null};
 btnStart.addEventListener('click', getRandomPlay);
+btnStart.addEventListener('click', handleImageChangeComputer);
 
 //create a game() with arguments of the computerPlay and playerPlay:
 function getGameMatch(playerSelection = playerChoice.choice, 
@@ -84,6 +132,7 @@ computerSelection = computerChoice.choice, score_01 = 0, score_02 = 0) {
         return [playerScore, computerScore];
     }
 } //return output expected: [1,0]; [1,1]; [0,0]
+
 
 // //create 5 rounds match:
 // const playGameMatch = (rounds = 5) => {

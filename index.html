@@ -16,12 +16,12 @@
       <div class="display-card">
         <div class="card players">
           <div class="pl-cd">
-            <div class="square icon">
-              <img class="user-play" src="images/rock.png"> 
+            <div class="square icon icon-player">
+              <img class="user-play" src="./images/default-img.png" alt="deafault img"> 
             </div>
             <div class="square vs-play"><p>VS</p></div>
-            <div class="square icon">
-              <img src="images/scissor.png">
+            <div class="square icon icon-computer">
+              <img class="computer-play" src="./images/default-img.png">
             </div>
           </div>
         </div>
@@ -30,7 +30,7 @@
             <div class="square score">
               <p>Score PLAYER:</p></div>
             <div class="square play-description">
-              <p class="result">WIN!<br><span>ROCK BEATS SCISSOR</span></p></div>
+              <p class="result">WIN! ROCK BEATS SCISSOR</p></div>
             <div class="square score">
               <p>score COMPUTER:</p></div>
           </div>
@@ -42,14 +42,15 @@
             <button data-play="paper" class="play-btn">Paper</button>
           </div>
           <div class="pl-cd">
-            <button class="start">Play</button>            
+            <button class="start" disabled='true'>Play</button> 
+            <button class="resume-choice">Resume Choice</button>           
           </div>
         </div>
       </div>
       <div class="side-card"></div>
     </div>
   </div>
-  <!-- <script src="./rock-scissor-paper.js"></script> -->
-  <script src="./new-game.js"></script>
+  <script src="./rock-scissor-paper.js"></script>
+  <!-- <script src="./new-game.js"></script> -->
 </body>
 </html>
