@@ -149,7 +149,7 @@ button {
   width: 10rem;
   border: 1px solid black;
   box-shadow: rgba(17, 17, 17, 0.11) -2px -2px 5px inset;
-  scale: 1.01;
+  scale: .98;
 }
 
 button.start {
@@ -157,5 +157,5 @@ button.start {
 }
 
 div {
-   outline: auto;
+   /* outline: auto; */
 }

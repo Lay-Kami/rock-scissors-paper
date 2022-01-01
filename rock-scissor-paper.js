@@ -60,6 +60,10 @@ function getChoice (e) {
       break;
   }
   btnStart.removeAttribute('disabled');
+  // setTimeout(btnStart.setAttribute('disabled', 'true')
+  const imageComputer = document.querySelector('img.computer-play');
+  imageComputer.setAttribute('src', './images/default-img.png');
+
 }
 
 //computerPlay
@@ -107,31 +111,88 @@ const computerChoice = {choice: null};
 btnStart.addEventListener('click', getRandomPlay);
 btnStart.addEventListener('click', handleImageChangeComputer);
 
-//create a game() with arguments of the computerPlay and playerPlay:
-function getGameMatch(playerSelection = playerChoice.choice, 
-computerSelection = computerChoice.choice, score_01 = 0, score_02 = 0) {
-    //set initial score
-    let playerScore = score_01;
-    let computerScore = score_02;
-    const resultText = document.querySelector('p.result');
-    //test game matchs
-    if (playerSelection == computerSelection) {
-        resultText.textContent = "Draw";
-        playerScore++;
-        computerScore++;
-        return [playerScore, computerScore];
-    } else if ((playerSelection == 'rock' && computerSelection == 'scissor') 
-    || (playerSelection == 'scissor' && computerSelection == 'paper') 
-    || (playerSelection == 'paper' && computerSelection == 'rock')) {
-        resultText = `Win, ${playerSelection} beats ${computerSelection}`;
-        playerScore++;
-        return [playerScore, computerScore];
-    } else {
-        resultText = `Lose, ${playerSelection} loses against ${computerSelection}`;
-        computerScore++;
-        return [playerScore, computerScore];
-    }
-} //return output expected: [1,0]; [1,1]; [0,0]
+//get result Win Lose Draw.
+function gameMatch (player = playerChoice.choice, computer = computerChoice.choice) {
+  const resultText = document.querySelector('p.result');
+  // update resultText.textContent;
+  if (player == computer) {
+    resultText.textContent = 'DRAW'; //just to display for now
+    return 'DRAW';
+  } else if ((player == 'rock' && computer == 'scissor') 
+      || (player == 'scissor' && computer == 'paper') 
+      || (player == 'paper' && computer == 'rock')) {
+    resultText.textContent = 'WIN';
+    return 'WIN';
+  } else {
+    resultText.textContent = 'LOSE';
+    return 'LOSE';
+  }
+} //return string WIN LOSE DRAW
+
+//get score for match
+function getScore(matchResult) {
+  let scorePlayer = 0;
+  let scoreComputer = 0;
+  
+  if ( matchResult == 'DRAW') {
+      scorePlayer++;
+      scoreComputer++;
+      return [scorePlayer, scoreComputer];
+  } else if (matchResult == 'WIN') {
+      scorePlayer++;
+      return [scorePlayer, scoreComputer];
+  } else{
+      scoreComputer++;
+      return [scorePlayer, scoreComputer];
+  }
+}//return number array like [0,1]
+
+btnStart.addEventListener('click', () => {
+  const resultPlayText = document.querySelector('p.play-score');
+  const resultCompText = document.querySelector('p.com-score');
+  //start score play
+  let playerScore = 0;
+  let computerScore = 0;
+
+  const match = gameMatch();
+  const score = getScore(match);  
+  console.log(score);
+  //store score;
+  playerScore = score[0];
+  computerScore = score[1];
+
+  //display score:
+  resultPlayText.textContent = `${playerScore}`;
+  resultCompText.textContent = `${computerScore}`;
+
+  //add score after each play and display;
+})
+
+// //create a game() with arguments of the computerPlay and playerPlay:
+// function getGameMatch(playerSelection = playerChoice.choice, 
+// computerSelection = computerChoice.choice, score_01 = 0, score_02 = 0) {
+//     //set initial score
+//     let playerScore = score_01;
+//     let computerScore = score_02;
+//     const resultText = document.querySelector('p.result');
+//     //test game matchs
+//     if (playerSelection == computerSelection) {
+//         resultText.textContent = "Draw";
+//         playerScore++;
+//         computerScore++;
+//         return [playerScore, computerScore];
+//     } else if ((playerSelection == 'rock' && computerSelection == 'scissor') 
+//     || (playerSelection == 'scissor' && computerSelection == 'paper') 
+//     || (playerSelection == 'paper' && computerSelection == 'rock')) {
+//         resultText = `Win, ${playerSelection} beats ${computerSelection}`;
+//         playerScore++;
+//         return [playerScore, computerScore];
+//     } else {
+//         resultText = `Lose, ${playerSelection} loses against ${computerSelection}`;
+//         computerScore++;
+//         return [playerScore, computerScore];
+//     }
+// } //return output expected: [1,0]; [1,1]; [0,0]
 
 
 // //create 5 rounds match:
