@@ -144,6 +144,14 @@ button {
   box-shadow: rgba(17, 17, 17, 0.11) -2px -2px 5px inset;
 }
 
+.btn-after {
+  height: 5vh;
+  width: 10rem;
+  border: 1px solid black;
+  box-shadow: rgba(17, 17, 17, 0.11) -2px -2px 5px inset;
+  scale: 1.01;
+}
+
 button.start {
   background: #dd8808;
 }

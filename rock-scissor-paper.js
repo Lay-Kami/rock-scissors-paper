@@ -1,14 +1,4 @@
-//get player one choice and compare.
-function getPlayerOneChoice () { 
-    let playChoice;
-    //repeat if is not the required choice.
-    do {
-        playChoice = prompt("Choose between rock, scissor or paper:","");
-        playChoice = playChoice.toLowerCase().trim();
-    } while ((playChoice !== 'rock') && (playChoice !== 'scissor') && 
-    (playChoice !== 'paper'));
-    return playChoice;
-}
+
 
 //computerPlay
 function getRandomInt (min, max) {
@@ -94,4 +84,5 @@ const playGameMatch = (rounds = 5) => {
         console.log(`match score is: ${playerOneScore} vs ${computerPlayScore}`);
     }
 }
+
 console.log(playGameMatch());
