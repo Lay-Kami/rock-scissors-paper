@@ -128,8 +128,22 @@ span {
 
 .score {
   display: flex;
-  align-items: baseline;
-  justify-content: baseline;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+
+.text {
+  font-weight: bold;
+}
+
+.text.strong {
+  font-weight: 900;
+  font-size: 4rem;
+  margin: 0;
+  margin-top: 0rem;
+  align-self: center;
 }
 
 .play-description {
@@ -156,6 +170,6 @@ button.start {
   background: #dd8808;
 }
 
-div {
-   /* outline: auto; */
-}
+/* div {
+   outline: auto;
+} */

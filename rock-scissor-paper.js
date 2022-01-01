@@ -128,7 +128,6 @@ function getScore(matchResult) {
   }
 }//return number array [0,1] [1,1] [1,0]
 
-
 //set initial count
 let countClick = 0;
 
@@ -136,7 +135,10 @@ let countClick = 0;
 function clickFunc() {
   countClick += 1;
   if (countClick >= 5) {
-  btnStart.setAttribute('disabled', 'true');
+    btnStart.setAttribute('disabled', 'true');
+    btnPlay.forEach((button) => {
+      button.setAttribute('disabled', 'true');
+    });
   }
 }
 
@@ -158,11 +160,19 @@ btnStart.addEventListener('click', () => {
   //display score:
   resultPlayText.textContent = `${playerScore}`;
   resultCompText.textContent = `${computerScore}`;
-
-
-
+  const resultText = document.querySelector('p.result');
+  
   clickFunc();
-})
+  if (btnStart.disabled == true) {
+    if (playerScore > computerScore) {
+      resultText.textContent = "WINNER!";
+    } else if (playerScore == computerScore) {
+      resultText.textContent = "DRAW";
+    } else {
+      resultText.textContent = `LOSE!`;
+    }
+  }
+});
 
 //restart user choice
 function resumeChoice () {
@@ -178,96 +188,15 @@ function resumeChoice () {
   
   computerScore = 0;
   playerScore = 0;
+  countClick = 0;
 
   const resultPlayText = document.querySelector('p.play-score');
   const resultCompText = document.querySelector('p.com-score');
-  resultPlayText.textContent = `${playerScore}`;
-  resultCompText.textContent = `${computerScore}`;
+  resultPlayText.textContent = '0';
+  resultCompText.textContent = '0';
+
+  btnPlay.forEach((button) => {
+    button.removeAttribute('disabled');
+  });
 }
 btnResumeChoice.addEventListener('click', resumeChoice);
-//anounce winner and play:
-
-
-
-
-
-
-
-// //create a game() with arguments of the computerPlay and playerPlay:
-// function getGameMatch(playerSelection = playerChoice.choice, 
-// computerSelection = computerChoice.choice, score_01 = 0, score_02 = 0) {
-//     //set initial score
-//     let playerScore = score_01;
-//     let computerScore = score_02;
-//     const resultText = document.querySelector('p.result');
-//     //test game matchs
-//     if (playerSelection == computerSelection) {
-//         resultText.textContent = "Draw";
-//         playerScore++;
-//         computerScore++;
-//         return [playerScore, computerScore];
-//     } else if ((playerSelection == 'rock' && computerSelection == 'scissor') 
-//     || (playerSelection == 'scissor' && computerSelection == 'paper') 
-//     || (playerSelection == 'paper' && computerSelection == 'rock')) {
-//         resultText = `Win, ${playerSelection} beats ${computerSelection}`;
-//         playerScore++;
-//         return [playerScore, computerScore];
-//     } else {
-//         resultText = `Lose, ${playerSelection} loses against ${computerSelection}`;
-//         computerScore++;
-//         return [playerScore, computerScore];
-//     }
-// } //return output expected: [1,0]; [1,1]; [0,0]
-
-
-// //create 5 rounds match:
-// const playGameMatch = (rounds = 5) => {
-//     let playerOneScore = 0;
-//     let computerPlayScore = 0;
-//     let matchResult;
-//     //get match result and score
-//     for (let i = 0; i < rounds; i++) {
-//         if (i == 3) {
-//             if (playerOneScore == 3) {
-//                 console.log(`FINAL SCORE:${playerOneScore} vs ${computerPlayScore}`);
-//                 return `VICTORY!`;
-//             } else if (computerPlayScore == 3) {
-//                 console.log(`FINAL SCORE:${playerOneScore} vs ${computerPlayScore}`);
-//                 return `LOSE!`;
-//             } 
-//         } 
-//         if (i == 4) {
-//             if (playerOneScore >= 3) {
-//                 console.log(`FINAL SCORE:${playerOneScore} vs ${computerPlayScore}`);
-//                 return `VICTORY!`;
-//             } else if (computerPlayScore >= 3) {
-//                 console.log(`FINAL SCORE:${playerOneScore} vs ${computerPlayScore}`);
-//                 return `LOSE!`;
-//             } else if (playerOneScore == 2 && computerPlayScore == 2) {
-//                 console.log(`FINAL SCORE:${playerOneScore} vs ${computerPlayScore}`);
-//                 return `DRAW!`;
-//             } 
-//         }
-//         if (i == 5) {
-//             if (playerOneScore >= 3) {
-//                 console.log(`FINAL SCORE:${playerOneScore} vs ${computerPlayScore}`);
-//                 return `VICTORY!`;
-//             } else {
-//                 console.log(`FINAL SCORE:${playerOneScore} vs ${computerPlayScore}`);
-//                 return `LOSE!`;
-//             }
-//         }
-//         matchResult = getGameMatch();
-//         playerOneScore = playerOneScore + matchResult[0];
-//         computerPlayScore = computerPlayScore + matchResult[1];
-//         console.log(`match score is: ${playerOneScore} vs ${computerPlayScore}`);
-//     }
-// }
-
-// console.log(playGameMatch());
-
-// setInterval(() => {
-//   console.log(computerChoice);
-//   console.log(playerChoice);
-// }, 5000);
-
