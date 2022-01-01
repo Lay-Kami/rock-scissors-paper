@@ -5,6 +5,7 @@ const btnPlay = document.querySelectorAll('button.play-btn');
 const btnStart = document.querySelector('button.start');
 const btnAll = document.querySelectorAll('button');
 const btnResumeChoice = document.querySelector('button.resume-choice');
+const btnRestart = document.querySelector('button.restart-game');
 
 //for button effect
 function handleClickEffect (e) {
@@ -17,19 +18,7 @@ btnAll.forEach((button) => {
   button.addEventListener('click', handleClickEffect);
 });
 
-//resume user choice
-function resumeChoice () {
-  const imagePlayer = document.querySelector('img.user-play');
-  const imageComputer = document.querySelector('img.computer-play');
-
-  imagePlayer.setAttribute('src', './images/default-img.png');
-  imageComputer.setAttribute('src', './images/default-img.png');
-  playerChoice.choice = null;
-  btnStart.setAttribute('disabled', 'true');
-}
-btnResumeChoice.addEventListener('click', resumeChoice);
-
-//get user choice by event
+//get player choice by event
 function getChoice (e) {
   switch (e.target.dataset.play) {
     case 'rock':
@@ -47,7 +36,9 @@ function getChoice (e) {
   const imageComputer = document.querySelector('img.computer-play');
   imageComputer.setAttribute('src', './images/default-img.png');
 }
+
 const playerChoice = {choice: null};
+
 btnPlay.forEach(button => {
   button.addEventListener('click', getChoice);
 });
@@ -135,28 +126,72 @@ function getScore(matchResult) {
       scoreComputer++;
       return [scorePlayer, scoreComputer];
   }
-}//return number array like [0,1]
+}//return number array [0,1] [1,1] [1,0]
 
+
+//set initial count
+let countClick = 0;
+
+//count clicks
+function clickFunc() {
+  countClick += 1;
+  if (countClick >= 5) {
+  btnStart.setAttribute('disabled', 'true');
+  }
+}
+
+//set initial score
+let playerScore = 0;
+let computerScore = 0;
+
+//set score count
 btnStart.addEventListener('click', () => {
   const resultPlayText = document.querySelector('p.play-score');
   const resultCompText = document.querySelector('p.com-score');
-  //start score play
-  let playerScore = 0;
-  let computerScore = 0;
 
-  const match = gameMatch();
-  const score = getScore(match);  
-  console.log(score);
-  //store score;
-  playerScore = score[0];
-  computerScore = score[1];
+  //users score:
+  const matchScore = getScore(gameMatch()); //[0,1] [1,1] [1,0]
 
+  playerScore = playerScore + matchScore[0];
+  computerScore = computerScore + matchScore[1];
+  
   //display score:
   resultPlayText.textContent = `${playerScore}`;
   resultCompText.textContent = `${computerScore}`;
 
-  //add score after each play and display;
+
+
+  clickFunc();
 })
+
+//restart user choice
+function resumeChoice () {
+  const imagePlayer = document.querySelector('img.user-play');
+  const imageComputer = document.querySelector('img.computer-play');
+
+  imagePlayer.setAttribute('src', './images/default-img.png');
+  imageComputer.setAttribute('src', './images/default-img.png');
+  
+  playerChoice.choice = null;
+  
+  btnStart.setAttribute('disabled', 'true');
+  
+  computerScore = 0;
+  playerScore = 0;
+
+  const resultPlayText = document.querySelector('p.play-score');
+  const resultCompText = document.querySelector('p.com-score');
+  resultPlayText.textContent = `${playerScore}`;
+  resultCompText.textContent = `${computerScore}`;
+}
+btnResumeChoice.addEventListener('click', resumeChoice);
+//anounce winner and play:
+
+
+
+
+
+
 
 // //create a game() with arguments of the computerPlay and playerPlay:
 // function getGameMatch(playerSelection = playerChoice.choice, 
