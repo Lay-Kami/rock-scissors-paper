@@ -1,4 +1,11 @@
-//functions declared
+//start UI game
+
+//get controls buttons
+const btnPlay = document.querySelectorAll('button.play-btn');
+const btnStart = document.querySelector('button.start');
+const btnAll = document.querySelectorAll('button');
+const btnResumeChoice = document.querySelector('button.resume-choice');
+
 //for button effect
 function handleClickEffect (e) {
   e.target.classList.add('btn-after');
@@ -6,34 +13,9 @@ function handleClickEffect (e) {
     e.target.classList.remove('btn-after');
   }, 200);
 }
-
-//change user display by event
-function handleImageChangePlayer (e) {
-  const imagePlayer = document.querySelector('img.user-play');
-//Img based on choice made by click:
-  if(e.target.dataset.play == 'rock') {
-    imagePlayer.setAttribute('src', './images/rock.png');
-  } else if (e.target.dataset.play == 'scissor') {
-    imagePlayer.setAttribute('src', './images/scissor.png');
-  } else {
-    imagePlayer.setAttribute('src', './images/paper.png');
-  }
-}
-
-//change computer display by event
-function handleImageChangeComputer (e) {
-    const imageComputer = document.querySelector('img.computer-play');
-
-    if(computerChoice.choice == 'rock') {
-      imageComputer.setAttribute('src', './images/rock.png');
-    } else if (computerChoice.choice == 'scissor') {
-      imageComputer.setAttribute('src', './images/scissor.png');
-    } else if (computerChoice.choice == 'paper') {
-      imageComputer.setAttribute('src', './images/paper.png');
-    } else {
-      imageComputer.setAttribute('src', './images/default-img.png');
-    }
-  }
+btnAll.forEach((button) => {
+  button.addEventListener('click', handleClickEffect);
+});
 
 //resume user choice
 function resumeChoice () {
@@ -45,6 +27,7 @@ function resumeChoice () {
   playerChoice.choice = null;
   btnStart.setAttribute('disabled', 'true');
 }
+btnResumeChoice.addEventListener('click', resumeChoice);
 
 //get user choice by event
 function getChoice (e) {
@@ -63,58 +46,65 @@ function getChoice (e) {
   // setTimeout(btnStart.setAttribute('disabled', 'true')
   const imageComputer = document.querySelector('img.computer-play');
   imageComputer.setAttribute('src', './images/default-img.png');
-
 }
-
-//computerPlay
-function getRandomInt (min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min) + min);
-}
-
-function getRandomPlay () {
-    let playChoice = ['rock', 'scissor', 'paper'];
-    const maxNumber = playChoice.length;
-    //get random index array and return it
-    playChoice = playChoice.at(getRandomInt(0, maxNumber));
-    computerChoice.choice = playChoice;
-}
-
-//start UI game
-//get controls buttons
-const btnPlay = document.querySelectorAll('button.play-btn');
-const btnStart = document.querySelector('button.start');
-const btnAll = document.querySelectorAll('button');
-const btnResumeChoice = document.querySelector('button.resume-choice');
-
-//add buttons effects
-btnAll.forEach((button) => {
-  button.addEventListener('click', handleClickEffect);
-});
-
-
-//resume choice
-btnResumeChoice.addEventListener('click', resumeChoice);
-
-//User choice
 const playerChoice = {choice: null};
 btnPlay.forEach(button => {
   button.addEventListener('click', getChoice);
 });
+
+//change user display
+function handleImageChangePlayer (e) {
+  const imagePlayer = document.querySelector('img.user-play');
+
+  if(e.target.dataset.play == 'rock') {
+    imagePlayer.setAttribute('src', './images/rock.png');
+  } else if (e.target.dataset.play == 'scissor') {
+    imagePlayer.setAttribute('src', './images/scissor.png');
+  } else {
+    imagePlayer.setAttribute('src', './images/paper.png');
+  }
+}
 btnPlay.forEach((button => {
   button.addEventListener('click', handleImageChangePlayer);
 }))
 
-//computer play by start
+//computer play
+function getRandomInt (min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min) + min);
+}
+
+function getRandomPlay () {
+  let playChoice = ['rock', 'scissor', 'paper'];
+  const maxNumber = playChoice.length;
+  
+  playChoice = playChoice.at(getRandomInt(0, maxNumber));
+  computerChoice.choice = playChoice;
+}
 const computerChoice = {choice: null};
-btnStart.addEventListener('click', getRandomPlay);
+btnStart.addEventListener('click', getRandomPlay); 
+
+//change computer display by event
+function handleImageChangeComputer (e) {
+  const imageComputer = document.querySelector('img.computer-play');
+
+  if(computerChoice.choice == 'rock') {
+    imageComputer.setAttribute('src', './images/rock.png');
+  } else if (computerChoice.choice == 'scissor') {
+    imageComputer.setAttribute('src', './images/scissor.png');
+  } else if (computerChoice.choice == 'paper') {
+    imageComputer.setAttribute('src', './images/paper.png');
+  } else {
+    imageComputer.setAttribute('src', './images/default-img.png');
+  }
+}
 btnStart.addEventListener('click', handleImageChangeComputer);
 
 //get result Win Lose Draw.
 function gameMatch (player = playerChoice.choice, computer = computerChoice.choice) {
   const resultText = document.querySelector('p.result');
-  // update resultText.textContent;
+
   if (player == computer) {
     resultText.textContent = 'DRAW'; //just to display for now
     return 'DRAW';
