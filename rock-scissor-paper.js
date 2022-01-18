@@ -1,5 +1,4 @@
 //start UI game
-
 //get controls buttons
 const btnPlay = document.querySelectorAll('button.play-btn');
 const btnStart = document.querySelector('button.start');
@@ -174,7 +173,7 @@ btnStart.addEventListener('click', () => {
   }
 });
 
-//restart user choice
+//restart game
 function resumeChoice () {
   const imagePlayer = document.querySelector('img.user-play');
   const imageComputer = document.querySelector('img.computer-play');
